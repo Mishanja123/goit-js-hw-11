@@ -89,7 +89,7 @@ function renderEvents(events) {
         return `
         <a class="gallery__link" href=${largeImageURL} >
             <div class="photo-card">
-            <img class="img" src="${webformatURL}" alt="${tags}" loading="lazy" />
+            <div class="scale"><img class="img scale" src="${webformatURL}" alt="${tags}" loading="lazy" /></div>
             <div class="info">
             <p class="info-item"><b>Likes</b><br>${likes}</p>
             <p class="info-item"><b>Views</b><br>${views}</p>
