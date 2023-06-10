@@ -44,11 +44,11 @@ justify-content: center;
  
 }
 .text-input:hover {
-    box-shadow: 5px 8px 5px 1px rgba(0, 0, 255, 1);
+    box-shadow: 5px 8px 7px 3px rgba(0, 0, 255, .2);
     
 }
 .text-input:focus{
-    box-shadow: 5px 8px 5px 1px rgba(0, 0, 255, .2);
+    box-shadow: 5px 8px 7px 3px rgba(0, 0, 255, .2);
 }
 
 .photo-card {
@@ -127,6 +127,7 @@ justify-content: center;
 .button-56-s:hover:after {
     transform: translate(0, 0);
     transition: 0.5s;
+    box-shadow: 8px 9px 7px 3px rgba(0, 0, 255, .2);
 }
 
 .button-56-s:active {
@@ -136,8 +137,13 @@ justify-content: center;
 
 .button-56-s:hover {
     outline: 0;
+    /* transition: 0.5s; */
+    
+}
+.button-56-s:focus:after{
+transform: translate(0, 0);
     transition: 0.5s;
-    box-shadow: 10.5px 8px 5px 1px rgba(0, 0, 255, .2);
+    box-shadow: 8px 9px 7px 3px rgba(0, 0, 255, .2);
 }
 
 @media (min-width: 768px) {
@@ -189,13 +195,15 @@ justify-content: center;
     position: absolute;
     top: -2px;
     transform: translate(8px, 8px);
-    transition: transform .2s ease-out;
+        transition: transform .2s ease-out;
         transition: 0.5s;
-    z-index: -1;
+        z-index: -1;
 }
 
 .button-56:hover:after {
     transform: translate(0, 0);
+    transition: 0.5s;
+    box-shadow: 8px 9px 7px 3px rgba(0, 0, 255, .2);
 
 }
 
@@ -206,8 +214,12 @@ justify-content: center;
 
 .button-56:hover {
     outline: 0;
-        transition: 0.5s;
-        box-shadow: 10.5px 8px 5px 1px rgba(0, 0, 255, .2);
+
+}
+.button-56:focus:after {
+    transform: translate(0, 0);
+    transition: 0.5s;
+    box-shadow: 8px 9px 7px 3px rgba(0, 0, 255, .2);
 }
 
 @media (min-width: 768px) {
