@@ -1,6 +1,13 @@
 body {
     margin-left: auto;
     margin-right: auto;
+    background-color: #F4F4FD;
+        font-family: 'roboto', sans-serif;
+            color: #434455;
+}
+a {
+    text-decoration: none;
+    color:#434455;
 }
 
 .img {
@@ -10,6 +17,7 @@ body {
     /* object-fit: contain;
   object-position: top; */
     object-fit: cover;
+    border-radius: 20px;
 }
 
 .unvisible {
@@ -17,10 +25,12 @@ body {
 }
 
 .gallery {
+    
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
     width: 1400px;
+    
     padding: 0 15px 0 20px;
     padding-bottom: 20px;
 }
@@ -55,10 +65,11 @@ justify-content: center;
 }
 
 .photo-card {
-    background-color: #fee6e3;
+
+ background-color: #fee6e3;
     box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
         0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
-    border-radius: 0px 0px 4px 4px;
+border-radius: 20px;
 }
 
     .photo-card:focus {
@@ -74,12 +85,18 @@ justify-content: center;
 .info {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
-
+    
     padding-left: 10px;
     padding-right: 10px;
 }
-
+.info-item {
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+   
+}
 
 
 
@@ -249,6 +266,7 @@ transform: translate(0, 0);
     /* Строчно-блочный элемент */
     overflow: hidden;
     /* Скрываем всё за контуром */
+    border-radius: 20px;
 }
 
 .scale img {
