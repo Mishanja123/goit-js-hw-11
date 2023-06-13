@@ -15,6 +15,12 @@ const submitBtn = document.querySelector(".submit-btn");
 const gallery = document.querySelector(".gallery")
 const loadBtn = document.querySelector(".load-more")
 
+
+searchForm.addEventListener("submit", onFormSubmit);
+loadBtn.addEventListener('click', handleLoadMore);
+
+
+
 axios.defaults.baseURL = `https://pixabay.com/api/`;
 const APIKEY = "36981447-281557b64426541a1312b4aee";
 const hitsOnPage = 40;
@@ -22,7 +28,6 @@ const hitsOnPage = 40;
 let pageToFatch = 1;
 let queryToFetch = '';
 let SumHits = 0;
-
 
 async function fetchEvents(keyword, page) {
   try {
@@ -32,7 +37,7 @@ async function fetchEvents(keyword, page) {
             q: keyword,
             page,
             image_type: "photo",
-            orientation: "horisontal",
+            orientation: "horizontal",
             safesearch: true,
             per_page: hitsOnPage,
        
@@ -51,7 +56,7 @@ async function fetchEvents(keyword, page) {
 async function getEvents(query, page) {
     const data = await fetchEvents(query, page)
     if (data.totalHits === 0) {
-        Notiflix.Notify.failure('"Sorry, there are no images matching your search query. Please try again."');
+        Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
         // alert("Sorry, there are no images matching your search query. Please try again.")
         return
         }
@@ -59,7 +64,8 @@ async function getEvents(query, page) {
     console.log(events)
     renderEvents(events)
         // alert(`Hooray! We found ${data.totalHits} images.`)
-    Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
+        Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
+
         let totalPages = Math.ceil(data.totalHits / hitsOnPage);
         SumHits = SumHits + data.hits.length
         console.log('SumHits', SumHits)
@@ -67,10 +73,39 @@ async function getEvents(query, page) {
         console.log('pageToFatch', pageToFatch)
         console.log('totalPages', totalPages)
         console.log('data.hits.length', data.hits.length)
-        if (totalPages > 1 && data.totalHits > SumHits) {
+  if (totalPages > 1 && data.totalHits > SumHits) {
           loadBtn.classList.remove("unvisible")    
           loadBtn.classList.add("button-56")
+  } else {
+    Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
+  }
+}
+async function getEvents1(query, page) {
+    const data = await fetchEvents(query, page)
+    if (data.totalHits === 0) {
+        Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
+        // alert("Sorry, there are no images matching your search query. Please try again.")
+        return
         }
+    const events = data.hits
+    console.log(events)
+    renderEvents(events)
+        // alert(`Hooray! We found ${data.totalHits} images.`)
+        // Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
+
+        let totalPages = Math.ceil(data.totalHits / hitsOnPage);
+        SumHits = SumHits + data.hits.length
+        console.log('SumHits', SumHits)
+        console.log('data.totalHits',data.totalHits)
+        console.log('pageToFatch', pageToFatch)
+        console.log('totalPages', totalPages)
+        console.log('data.hits.length', data.hits.length)
+  if (totalPages > 1 && data.totalHits > SumHits) {
+          loadBtn.classList.remove("unvisible")    
+          loadBtn.classList.add("button-56")
+  } else {
+    Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
+  }
 }
 
 
@@ -105,28 +140,30 @@ function renderEvents(events) {
 }
 
 
-searchForm.addEventListener("submit", (event) => {
+
+
+ function onFormSubmit(event) {
   event.preventDefault();
+  
     const inputValue = textInput.value
     if (!inputValue.trim() || inputValue === queryToFetch) {
         return;
     }
   queryToFetch = inputValue;
   pageToFatch = 1;
+
   gallery.innerHTML = '';
   SumHits = 0
   loadBtn.classList.add("unvisible")
   loadBtn.classList.remove('button-56')
   getEvents(queryToFetch, pageToFatch);
-});
+}
 
-
-
-loadBtn.addEventListener('click', handleLoadMore);
 
 function handleLoadMore() {
-    pageToFatch += 1;
-    getEvents(queryToFetch, pageToFatch);
+  pageToFatch += 1;
+
+    getEvents1(queryToFetch, pageToFatch);
   loadBtn.classList.add('unvisible')
   loadBtn.classList.remove('button-56')
 }
@@ -136,3 +173,4 @@ const option = {
     captionsData: "alt",
     captionsDelay: 250
 }
+
